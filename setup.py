@@ -1,6 +1,7 @@
 """
 Sanic
 """
+
 import codecs
 import os
 import re
@@ -59,7 +60,9 @@ def str_to_bool(val: str) -> bool:
 
 with open_local(["sanic", "__version__.py"], encoding="latin1") as fp:
     try:
-        version = re.findall(r"^__version__ = \"([^']+)\"\r?$", fp.read(), re.M)[0]
+        version = re.findall(
+            r"^__version__ = \"([^']+)\"\r?$", fp.read(), re.M
+        )[0]
     except IndexError:
         raise RuntimeError("Unable to determine version.")
 
@@ -86,15 +89,18 @@ setup_kwargs = {
         "Development Status :: 4 - Beta",
         "Environment :: Web Environment",
         "License :: OSI Approved :: MIT License",
-        "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
+        "Programming Language :: Python :: 3.13",
     ],
     "entry_points": {"console_scripts": ["sanic = sanic.__main__:main"]},
 }
 
-env_dependency = '; sys_platform != "win32" ' 'and implementation_name == "cpython"'
+env_dependency = (
+    '; sys_platform != "win32" ' 'and implementation_name == "cpython"'
+)
 ujson = "ujson>=1.35" + env_dependency
 uvloop = "uvloop>=0.15.0" + env_dependency
 types_ujson = "types-ujson" + env_dependency
